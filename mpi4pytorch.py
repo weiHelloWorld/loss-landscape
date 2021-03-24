@@ -65,7 +65,9 @@ def allreduce_min(comm, array, display_info=False):
 def reduce_max(comm, array, display_info=False):
     if not comm:
         return array
-    array = np.asarray(array, dtype='d')
+    # print('1', type(array), array.dtype)
+    array = np.array(array, dtype=np.float32, copy=True)
+    # print('2', type(array), array.dtype)
     total = np.zeros_like(array)
     float_min = np.finfo(np.float).min
     total.fill(float_min)
